@@ -58,10 +58,16 @@ xLength = len(rows[0])
 yLength = len(rows)
 surroundingRolls = ""
 counter = 0
-for i in range(xLength):
-    for j in range(yLength):
-        surroundingRolls = around(i,j)
-        if surroundingRolls.count("@")<4 and rows[i][j]=='@':
-            counter += 1
+madeChanges = True
+while madeChanges==True:
+    madeChanges=False
+    for i in range(xLength):
+        for j in range(yLength):
+            surroundingRolls = around(i,j)
+            if surroundingRolls.count("@")<4 and rows[i][j]=='@':
+                counter += 1
+                madeChanges = True
+                rows[i] = rows[i][:j] + '.' + rows[i][j+1:]
+
 
 print(counter)
